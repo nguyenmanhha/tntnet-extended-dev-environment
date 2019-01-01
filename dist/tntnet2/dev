@@ -1,0 +1,44 @@
+#!/bin/bash
+
+echo ""
+echo "Working Directory:"
+echo $PWD
+
+sigint_handler(){
+	pkill -9 -f 'make wsrun'
+	pkill -9  webserver
+
+	echo ""
+	echo $(date) ": Exit Webserver"
+	echo ""
+}
+
+mrun(){
+	pkill -9 -f 'make wsrun'
+	pkill -9 webserver
+
+	make wsrun &
+	echo ""
+	echo $(date) ": Restart Webserver"
+	echo "Application-PID:" $!
+	echo ""
+}
+
+mrun
+
+trap sigint_handler INT
+
+# this main loop uses inotify to watch for file-changes
+# add more files here to exclude as needed with --exclude option
+while FILENAME=$(inotifywait -r -e modify "./" --format "%f"  --exclude "^((.+)\.(cpp|o|kate-swp))|^((.*)webserver)$" )
+do
+	if [[ $FILENAME == *.xml* ]] || [[ $FILENAME == *.ecpp* ]] || [[ $FILENAME == Makefile* ]]
+	then
+		echo "FILE Changed:"
+		echo $FILENAME
+		echo ""
+		mrun
+	fi
+	sleep 1s
+
+done

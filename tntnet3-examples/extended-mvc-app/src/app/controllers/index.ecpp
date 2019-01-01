@@ -1,0 +1,8 @@
+<%args>
+</%args>
+<%include>src/app/models/index.ecpp</%include>
+<%cpp>
+
+// put your controller code for index page here
+
+</%cpp>

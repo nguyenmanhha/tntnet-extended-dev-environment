@@ -1,0 +1,54 @@
+#!/bin/bash
+
+echo ""
+echo ">>> Working Directory:"
+echo $PWD
+
+APP_NAME=App
+
+if [ $1 != "" ]
+then
+   APP_NAME=$1
+fi
+
+echo ""
+echo ">>> App-Name: $APP_NAME"
+
+sigint_handler(){
+	pkill -9 -f 'make wsrun'
+	pkill -9  $APP_NAME
+
+	echo ""
+	echo $(date) ": Exit Webserver"
+	echo ""
+}
+
+mrun(){
+	pkill -9 $APP_NAME
+	pkill -9 -f 'make wsrun'
+
+	make wsrun
+	bash -c "exec -a $APP_NAME ./$APP_NAME &"
+	echo ""
+	echo $(date) ": Restart Webserver"
+	echo "Application-PID:" $!
+	echo ""
+}
+
+mrun
+
+trap sigint_handler INT
+
+while FILENAME=$(inotifywait -r -e modify "./" --format "%f"  --exclude "^((.+)\.(cpp|o|kate-swp))|^((.*)$APP_NAME)$" )
+do
+	if [[ $FILENAME == *.xml* ]] || [[ $FILENAME == *.ecpp* ]] || [[ $FILENAME == Makefile* ]]
+	then
+		echo ""
+		echo ">>> FILE Changed:"
+		echo $FILENAME
+		echo ""
+		mrun
+	fi
+	sleep 1s
+
+done

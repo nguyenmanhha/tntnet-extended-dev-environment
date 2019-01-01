@@ -1,0 +1,76 @@
+# Prerequisites
+*.d
+
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Fortran module files
+*.mod
+*.smod
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Executables
+*.exe
+*.out
+*.app
+
+# ADDITIONAL
+/autom4te.cache/
+/config/
+Makefile.in
+aclocal.m4
+app.info
+# compile
+config.h
+config.h.in
+config.log
+config.status
+# configure
+configure.scan
+coverage_report
+depcomp
+install-sh
+libtool
+m4
+# missing
+stamp-h1
+*~
+*.log
+*.o
+*.la
+*.so*
+*.a
+.deps
+*.deps
+*.lo
+*.gcno
+*.gcda
+
+# app arc-specific
+src/api/controllers/*.cpp
+src/api/models/*.cpp
+src/api/views/*.cpp
+src/api/actions/*.cpp
+src/api/jsons/*.cpp
+src/api/htmls/*.cpp
+
+src/actionmain.cpp
+src/public.cpp
+src/webmain.cpp

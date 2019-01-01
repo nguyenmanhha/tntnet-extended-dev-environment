@@ -1,0 +1,1 @@
+MyApp_SOURCES:= src/main.cpp src/configuration.cpp src/actionmain.cpp src/app/jsons/example.cpp src/webmain.cpp src/app/views/index.cpp src/app/views/mypage.cpp src/app/controllers/index.cpp src/app/actions/myaction.cpp

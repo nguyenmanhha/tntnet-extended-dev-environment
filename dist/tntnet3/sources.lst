@@ -1,0 +1,1 @@
+API_SOURCES:= src/main.cpp src/configuration.cpp src/actionmain.cpp src/api/jsons/example.cpp src/webmain.cpp src/api/views/index.cpp src/api/views/mypage.cpp src/api/controllers/index.cpp src/api/actions/myaction.cpp
