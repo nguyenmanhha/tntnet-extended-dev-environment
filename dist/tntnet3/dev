@@ -24,13 +24,20 @@ sigint_handler(){
 }
 
 mrun(){
+  echo "Terminating Dev-Task:"
 	pkill -9 $APP_NAME
 	pkill -9 -f 'make wsrun'
 
 	make wsrun
-	bash -c "exec -a $APP_NAME ./$APP_NAME &"
-	echo ""
+
 	echo $(date) ": Restart Webserver"
+	echo "====================================================="
+	echo ""
+
+	bash -c "exec -a $APP_NAME ./$APP_NAME &"
+
+	echo ""
+	echo "====================================================="
 	echo "Application-PID:" $!
 	echo ""
 }

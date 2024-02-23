@@ -14,12 +14,18 @@ sigint_handler(){
 }
 
 mrun(){
+  echo "Terminating Dev-Task:"
 	pkill -9 -f 'make wsrun'
 	pkill -9 webserver
 
-	make wsrun &
-	echo ""
 	echo $(date) ": Restart Webserver"
+	echo "====================================================="
+	echo ""
+
+	make wsrun &
+
+	echo ""
+	echo "====================================================="
 	echo "Application-PID:" $!
 	echo ""
 }

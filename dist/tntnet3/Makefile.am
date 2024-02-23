@@ -5,7 +5,7 @@ AUTOMAKE_OPTIONS = subdir-objects
 SRC_PATH := src/
 PUBLIC_ASSETS_PATH := $(SRC_PATH)public/
 
-# these seprate scans allow for more flexibility
+# these separate scans allow for more flexibility
 APP_ECPP_SRC_MODELS := $(shell find $(SRC_PATH)api/models/ -iname '*.ecpp')
 APP_ECPP_SRC_VIEWS := $(shell find $(SRC_PATH)api/views/ -iname '*.ecpp')
 APP_ECPP_SRC_CONTROLLERS := $(shell find $(SRC_PATH)api/controllers/ -iname '*.ecpp')
